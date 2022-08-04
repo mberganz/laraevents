@@ -95,12 +95,12 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="phones[0][number]" id="numero" class="form-control" placeholder="Telefone">
+                            <input type="text" name="phones[0][numero]" id="numero" class="form-control" placeholder="Telefone">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="phones[1][number]" id="numero" class="form-control"
+                            <input type="text" name="phones[1][numero]" id="numero" class="form-control"
                                 placeholder="Celular">
                         </div>
                     </div>
