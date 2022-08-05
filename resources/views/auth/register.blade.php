@@ -19,26 +19,40 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="text" name="user[nome]" id="nome" class="form-control"
-                                placeholder="Nome">
+                            <input type="text" name="user[nome]" id="nome"
+                                class="form-control {{ $errors->has('user.nome') ? 'is-invalid' : '' }}"
+                                placeholder="Nome" value="{{ old('user.nome') }}">
+                            <div class="invalid-feedback">{{ $errors->first('user.nome') }}</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="email" name="user[email]" id="email" class="form-control"
-                                placeholder="E-mail">
+                            <input type="email" name="user[email]" id="email"
+                                class="form-control {{ $errors->has('user.email') ? 'is-invalid' : '' }}"
+                                placeholder="E-mail" value="{{ old('user.email') }}">
+                            <div class="invalid-feedback">{{ $errors->first('user.email') }}</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="user[cpf]" id="cpf" class="form-control"
-                                placeholder="CPF">
+                            <input type="text" name="user[cpf]" id="cpf"
+                                class="form-control cpf {{ $errors->has('user.cpf') ? 'is-invalid' : '' }}"
+                                placeholder="CPF" value="{{ old('user.cpf') }}">
+                            <div class="invalid-feedback">{{ $errors->first('user.cpf') }}</div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <input type="password" name="user[senha]" id="senha" class="form-control"
+                            <input type="password" name="user[senha]" id="senha"
+                                class="form-control {{ $errors->has('user.senha') ? 'is-invalid' : '' }}"
                                 placeholder="Senha">
+                            <div class="invalid-feedback">{{ $errors->first('user.senha') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <input type="password" name="user[senha_confirmation]" id="senha" class="form-control"
+                                placeholder="Confirmar Senha">
                         </div>
                     </div>
                 </div>
@@ -48,44 +62,58 @@
                 <div class="row mt-4">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" name="address[cep]" id="cep" class="form-control"
-                                placeholder="CEP">
+                            <input type="text" name="address[cep]" id="cep"
+                                class="form-control cep {{ $errors->has('address.cep') ? 'is-invalid' : '' }}"
+                                placeholder="CEP" value="{{ old('address.cep') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.cep') }}</div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <input type="text" name="address[estado]" id="estado" class="form-control"
-                                placeholder="UF">
+                            <input type="text" name="address[estado]" id="estado"
+                                class="form-control uf  {{ $errors->has('address.estado') ? 'is-invalid' : '' }}"
+                                placeholder="UF" value="{{ old('address.estado') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.estado') }}</div>
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <input type="text" name="address[cidade]" id="estado" class="form-control"
-                                placeholder="Cidade">
+                            <input type="text" name="address[cidade]" id="cidade"
+                                class="form-control {{ $errors->has('address.cidade') ? 'is-invalid' : '' }}"
+                                placeholder="Cidade" value="{{ old('address.cidade') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.cidade') }}</div>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="form-group">
-                            <input type="text" name="address[rua]" id="rua" class="form-control"
-                                placeholder="Rua">
+                            <input type="text" name="address[rua]" id="rua"
+                                class="form-control {{ $errors->has('address.rua') ? 'is-invalid' : '' }}"
+                                placeholder="Rua" value="{{ old('address.rua') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.rua') }}</div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" name="address[numero]" id="numero" class="form-control"
-                                placeholder="Número">
+                            <input type="text" name="address[numero]" id="numero"
+                                class="form-control {{ $errors->has('address.numero') ? 'is-invalid' : '' }}"
+                                placeholder="Número" value="{{ old('address.numero') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.numero') }}</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="address[bairro]" id="bairro" class="form-control"
-                                placeholder="Bairro">
+                            <input type="text" name="address[bairro]" id="bairro"
+                                class="form-control {{ $errors->has('address.bairro') ? 'is-invalid' : '' }}"
+                                placeholder="Bairro" value="{{ old('address.bairro') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.bairro') }}</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="address[complemento]" id="complemento" class="form-control"
-                                placeholder="Complemento">
+                            <input type="text" name="address[complemento]" id="complemento"
+                                class="form-control {{ $errors->has('address.complemento') ? 'is-invalid' : '' }}"
+                                placeholder="Complemento" value="{{ old('address.complemento') }}">
+                            <div class="invalid-feedback">{{ $errors->first('address.complemento') }}</div>
                         </div>
                     </div>
                 </div>
@@ -95,13 +123,18 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="phones[0][numero]" id="numero" class="form-control" placeholder="Telefone">
+                            <input type="text" name="phones[0][numero]" id="numero"
+                                class="form-control phone {{ $errors->has('phones.0.numero') ? 'is-invalid' : '' }}"
+                                placeholder="Telefone" value="{{ old('phones.0.numero') }}">
+                            <div class="invalid-feedback">{{ $errors->first('phones.0.numero') }}</div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="phones[1][numero]" id="numero" class="form-control"
-                                placeholder="Celular">
+                            <input type="text" name="phones[1][numero]" id="numero"
+                                class="form-control cellphone {{ $errors->has('phones.1.numero') ? 'is-invalid' : '' }}"
+                                placeholder="Celular" value="{{ old('phones.1.numero') }}">
+                            <div class="invalid-feedback">{{ $errors->first('phones.1.numero') }}</div>
                         </div>
                     </div>
                 </div>
@@ -110,6 +143,10 @@
             </form>
         </div>
     </div>
+
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/auth/register.js') }}"></script>
 </body>
 
 </html>
