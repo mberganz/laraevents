@@ -15,12 +15,12 @@ class User extends Authenticable
         'nome',
         'email',
         'cpf',
-        'senha',
+        'password',
         'tipoUsuario'
     ];
 
     protected $hidden = [
-        'senha',
+        'password',
     ];
 
     public function address()
@@ -34,6 +34,6 @@ class User extends Authenticable
 
     public function setPasswordAttribute($value)
     {
-        $this->attributes['senha'] = bcrypt($value);
+        $this->attributes['password'] = bcrypt($value);
     }
 }

@@ -43,15 +43,15 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <input type="password" name="user[senha]" id="senha"
-                                class="form-control {{ $errors->has('user.senha') ? 'is-invalid' : '' }}"
+                            <input type="password" name="user[password]" id="password"
+                                class="form-control {{ $errors->has('user.password') ? 'is-invalid' : '' }}"
                                 placeholder="Senha">
-                            <div class="invalid-feedback">{{ $errors->first('user.senha') }}</div>
+                            <div class="invalid-feedback">{{ $errors->first('user.password') }}</div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <input type="password" name="user[senha_confirmation]" id="senha" class="form-control"
+                            <input type="password" name="user[password_confirmation]" id="password_confimation" class="form-control"
                                 placeholder="Confirmar Senha">
                         </div>
                     </div>
