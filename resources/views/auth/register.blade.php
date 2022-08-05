@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="text-center my-4">Criar conta</h1>
+    <h1 class="text-center my-4">Cadastrar</h1>
 
     <div class="card shadow my-5 w-75 mx-auto">
         <div class="card-body">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success btn-block mt-3">Enviar</button>
+                <button type="submit" class="btn btn-success btn-block mt-3">Cadastrar</button>
             </form>
         </div>
     </div>
