@@ -4,7 +4,8 @@ use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
 };
-use App\Http\Controllers\Participant\Dashboard\DashboardController;
+use App\Http\Controllers\Participant\Dashboard\DashboardController as ParticipantDashboardController;
+use App\Http\Controllers\Organization\Dashboard\DashboardController as OrganizationDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,12 @@ Route::group(['as' => 'auth.'], function () {
         Route::get('login', [LoginController::class, 'create'])->name('login.create');
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
-    
+
     Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
 });
 
-Route::get('participant/dashboard', [DashboardController::class, 'index'])->name('participant.dashboard.index')->middleware('auth');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('participant/dashboard', [ParticipantDashboardController::class, 'index'])->name('participant.dashboard.index')->middleware('role:participant');
+
+    Route::get('organization/dashboard', [OrganizationDashboardController::class, 'index'])->name('organization.dashboard.index')->middleware('role:organization');
+});

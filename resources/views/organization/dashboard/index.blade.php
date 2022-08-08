@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 
 @section('content')
-    Dashboard do Participante
+    Dashboard da Organização
 @endsection
 
 @section('title')
