@@ -51,8 +51,8 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <input type="password" name="user[password_confirmation]" id="password_confimation" class="form-control"
-                                placeholder="Confirmar Senha">
+                            <input type="password" name="user[password_confirmation]" id="password_confimation"
+                                class="form-control" placeholder="Confirmar Senha">
                         </div>
                     </div>
                 </div>
