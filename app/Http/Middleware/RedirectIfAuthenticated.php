@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 $userRole = auth()->user()->tipoUsuario;
 
-                return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
+                return redirect()->route(UserService::getDashboardRouteBasedOnUserRole($userRole));
             }
         }
 

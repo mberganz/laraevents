@@ -21,11 +21,13 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
 
+
         if (Auth::attempt($credentials)) {
             $userRole = auth()->user()->tipoUsuario;
 
-            return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
+            return redirect()->route(UserService::getDashboardRouteBasedOnUserRole($userRole));
         }
+        
 
         return redirect()
             ->route('auth.login.create')

@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         $requestData = $request->validated();
 
-        $requestData['user']['tipoUsuario'] = 'participante';
+        $requestData['user']['tipoUsuario'] = 'participant';
 
         DB::beginTransaction();
         try {

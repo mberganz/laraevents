@@ -7,9 +7,9 @@ class UserService
     public static function getDashboardRouteBasedOnUserRole($userRole)
     {
         if ($userRole === 'participant') {
-            return route('participant.dashboard.index');
+            return 'participant.dashboard.index';
         } elseif ($userRole === 'organization') {
-            return route('organization.dashboard.index');
+            return 'organization.dashboard.index';
         }
     }
 }
