@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Organization\Event;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
 use App\Http\Requests\Organization\Event\EventRequest;
+use App\Models\{
+    Event,
+    User
+};
+use App\Services\EventService;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,11 +18,11 @@ class EventController extends Controller
         $events = Event::query();
 
         if (isset($request->search) && $request->search !== '') {
-            $events->where('event_name', 'like', '&'.$request->search.'&');
+            $events->where('name', 'like', '%' . $request->search . '%');
         }
 
         return view('organization.events.index', [
-            'events' => $events->paginate(5),
+            'events' => $events->paginate(2),
             'search' => isset($request->search) ? $request->search : ''
         ]);
     }
@@ -30,10 +34,50 @@ class EventController extends Controller
 
     public function store(EventRequest $request)
     {
+        // dd($request->validated());
         Event::create($request->validated());
-
         return redirect()
             ->route('organization.events.index')
             ->with('success', 'Evento cadastrado com sucesso');
+    }
+
+    public function show(Event $event)
+    {
+        return view('organization.events.show', [
+            'event' => $event,
+            'eventStartDateHasPassed' => EventService::eventStartDateHasPassed($event),
+            'eventEndDateHasPassed' => EventService::eventEndDateHasPassed($event),
+            'allParticipantUsers' => User::query()
+                ->where('role', 'participant')
+                ->whereDoesntHave('events', function ($query) use ($event) {
+                    $query->where('id', $event->id);
+                })
+                ->get()
+        ]);
+    }
+
+    public function edit(Event $event)
+    {
+        return view('organization.events._partials.edit', [
+            'event' => $event
+        ]);
+    }
+
+    public function update(Event $event, EventRequest $request)
+    {
+        $event->update($request->validated());
+
+        return redirect()
+            ->route("organization.events.index")
+            ->with('success', 'Evento atualizado com sucesso');
+    }
+
+    public function destroy(Event $event)
+    {
+        $event->delete();
+
+        return redirect()
+            ->route('organization.events.index')
+            ->with('success', 'Evento deletado com sucesso');
     }
 }

@@ -11,17 +11,17 @@ class Address extends Model
 
     protected $fillable = [
         'cep',
-        'rua',
-        'numero',
-        'estado',
-        'cidade',
-        'bairro',
-        'complemento',
+        'street',
+        'number',
+        'uf',
+        'city',
+        'district',
+        'complement',
         'user_id'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Address::class);
     }
 }

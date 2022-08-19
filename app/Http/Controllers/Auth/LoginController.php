@@ -21,17 +21,14 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
 
-
         if (Auth::attempt($credentials)) {
-            $userRole = auth()->user()->tipoUsuario;
+            $userRole = auth()->user()->role;
 
-            return redirect()->route(UserService::getDashboardRouteBasedOnUserRole($userRole));
+            return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
         }
-        
-
         return redirect()
             ->route('auth.login.create')
-            ->with('warning', 'Autenticação falhou')
+            ->with('warning', 'Autenticação Falhou!')
             ->withInput();
     }
 

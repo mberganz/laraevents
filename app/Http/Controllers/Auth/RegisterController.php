@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\{User, Address};
+use App\Models\{
+    User,
+    Address
+};
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,25 +20,23 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $requestData = $request->validated();
-
-        $requestData['user']['tipoUsuario'] = 'participant';
+        $requestdata = $request->validated();
+        $requestdata['user']['role'] = 'participant';
 
         DB::beginTransaction();
+
         try {
-            $user = User::create($requestData['user']);
 
-            $user->address()->create($requestData['address']);
+            $user = User::create($requestdata['user']);
+            $user->address()->create($requestdata['address']);
 
-            foreach ($requestData['phones'] as $phone) {
-                $user->phones()->create($phone);
+            foreach ($requestdata['phones'] as $phone) {
+                $user->phone()->create($phone);
             }
 
             DB::commit();
 
-            return redirect()
-                ->route('auth.login.create')
-                ->with('success', 'Conta criada com sucesso! Efetue o login');
+            return redirect()->route('auth.login.create')->with('success', 'Conta criada com sucesso!');
         } catch (\Exception $exception) {
             DB::rollBack();
             return 'Mensagem: ' . $exception->getMessage();

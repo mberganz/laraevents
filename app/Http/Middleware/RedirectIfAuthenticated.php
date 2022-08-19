@@ -24,9 +24,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                $userRole = auth()->user()->tipoUsuario;
-
-                return redirect()->route(UserService::getDashboardRouteBasedOnUserRole($userRole));
+                $userRole = auth()->user()->role;
+                return redirect(UserService::getDashboardRouteBasedOnUserRole($userRole));
             }
         }
 

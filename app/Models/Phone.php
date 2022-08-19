@@ -10,7 +10,7 @@ class Phone extends Model
     use HasFactory;
 
     protected $fillable = [
-        'numero',
+        'number',
         'user_id'
     ];
 

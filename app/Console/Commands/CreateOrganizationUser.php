@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\User;
+use Illuminate\Console\Command;
 
 class CreateOrganizationUser extends Command
 {
@@ -12,14 +12,14 @@ class CreateOrganizationUser extends Command
      *
      * @var string
      */
-    protected $signature = 'create:organization-user {nome} {email} {cpf} {password}';
+    protected $signature = 'create:organization-user {name} {email} {cpf} {password}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Cria um novo usuário do tipo organização';
+    protected $description = 'Cria um usuário do tipo organização';
 
     /**
      * Execute the console command.
@@ -28,18 +28,19 @@ class CreateOrganizationUser extends Command
      */
     public function handle()
     {
-        $nome = $this->argument('nome');
+        $name = $this->argument('name');
         $email = $this->argument('email');
         $cpf = $this->argument('cpf');
         $password = $this->argument('password');
 
         User::create([
-            'nome' => $nome,
+            'name' => $name,
             'email' => $email,
             'cpf' => $cpf,
             'password' => $password,
-            'tipoUsuario' => 'organization'
+            'role' => 'organization'
         ]);
+
         $this->info('Usuário cadastrado com sucesso!');
     }
 }

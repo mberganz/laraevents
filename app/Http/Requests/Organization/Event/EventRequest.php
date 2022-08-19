@@ -24,38 +24,31 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            'event_name' => 'required',
+            'name' => 'required',
             'speaker_name' => 'required',
             'start_date' => [
                 'required',
-                'date_format:dd/mm/YYYY H:i'
+                'date_format:d/m/Y H:i'
             ],
             'end_date' => [
                 'required',
-                'date_format:dd/mm/YYYY H:i',
+                'date_format:d/m/Y H:i',
                 'after:' . $this->start_date ?? null
             ],
-            'participants_limit' => [
-                'numeric',
-                'integer',
-                'min:1'
-            ],
-            'target_audience' => [
-                'required',
-                'max:150'
-            ]
+            'participants_limit' => ['numeric', 'integer', 'min:1'],
+            'target_audience' => ['required', 'max:150'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'event_name' => 'nome',
+            'name' => 'nome',
             'speaker_name' => 'palestrante',
-            'start_date' => 'data de inicio',
+            'start_date' => 'data de início',
             'end_date' => 'data de fim',
             'participants_limit' => 'limite de participantes',
-            'target_audience' => 'publico-alvo'
+            'target_audience' => 'publico alvo',
         ];
     }
 
@@ -63,7 +56,7 @@ class EventRequest extends FormRequest
     {
         return [
             'date_format' => 'O campo :attribute não corresponde ao formato 00/00/0000 00:00',
-            'end_date.after' => 'A data final deve ser posterior a data inicial'
+            'end_date.after' => 'A data final deve ser posterior a data incial'
         ];
     }
 }

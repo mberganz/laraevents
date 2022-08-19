@@ -1,9 +1,5 @@
 @extends('layouts.panel')
-
+@section('title', 'Dashboard')
 @section('content')
-    Dashboard do Participante
-@endsection
-
-@section('title')
-    Dashboard
+    Dashboard do participante
 @endsection

@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\{
-    RegisterController,
-    LoginController
-};
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Participant\Dashboard\DashboardController as ParticipantDashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Organization\{
     Dashboard\DashboardController as OrganizationDashboardController,
-    Event\EventController
+    Event\EventController,
+    Event\EventSubscriptionController
 };
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Organization\Event\EventPresenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +31,23 @@ Route::group(['as' => 'auth.'], function () {
         Route::post('login', [LoginController::class, 'store'])->name('login.store');
     });
 
-    Route::post('logout', [LoginController::class, 'destroy'])->name('login.destroy')->middleware('auth');
+    Route::post('logout', [LoginController::class, 'destroy'])
+        ->name('login.destroy')
+        ->middleware('auth');
 });
 
-Route::group(['middleware' => 'auth', 'as' => 'organization.', 'middleware' => 'role:organization'], function () {
-    Route::get('participant/dashboard', [ParticipantDashboardController::class, 'index'])->name('participant.dashboard.index')->middleware('role:participant');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('participant/dashboard', [ParticipantDashboardController::class, 'index'])
+        ->name('participant.dashboard.index')
+        ->middleware('role:participant');
 
-    Route::group(['prefix' => 'organizaation'], function () {
+    Route::group(['prefix' => 'organization', 'as' => 'organization.', 'middleware' => 'role:organization'], function () {
         Route::get('dashboard', [OrganizationDashboardController::class, 'index'])->name('dashboard.index');
 
-        Route::get('events', [EventController::class, 'index'])->name('events.index');
-        Route::get('events/create', [EventController::class, 'create'])->name('events.create');
-        Route::post('events', [EventController::class, 'store'])->name('events.store');
+        Route::post('events/{event}/subscriptions', [EventSubscriptionController::class, 'store'])->name('events.subscriptions.store');
+        Route::delete('events/{event}/subscriptions/{user}', [EventSubscriptionController::class, 'destroy'])->name('events.subscriptions.destroy');
+
+        Route::post('events/{event}/presences/{user}', EventPresenceController::class)->name('events.presences');
+        Route::resource('events', EventController::class);
     });
 });

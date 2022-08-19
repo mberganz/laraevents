@@ -22,21 +22,9 @@
                         {{ session('success') }}
                     </div>
                 @endif
-
                 @if (session()->has('warning'))
-                    <div class="alert alert-warning">
+                    <div class="alert alert-success">
                         {{ session('warning') }}
-                    </div>
-                @endif
-
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
                     </div>
                 @endif
 
@@ -69,8 +57,8 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            Não tem uma conta? <a class=""
-                                href="{{ route('auth.register.create') }}">Cadastre-se!</a>
+                            <a class="small" href="{{ route('auth.register.create') }}">Não tem uma conta?
+                                Cadastre-se!</a>
                         </div>
                     </div>
                 </div>
